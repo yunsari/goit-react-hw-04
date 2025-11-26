@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { fetchImages } from "./api/unsplash";
 
+import { Toaster } from "react-hot-toast";
+
 import SearchBar from "./components/searchBar/SearchBar";
 import ImageGallery from "./components/imageGallery/ImageGallery";
 import LoadMoreBtn from "./components/loadMoreBtn/LoadMoreBtn";
@@ -49,10 +51,14 @@ function App() {
     setPage((prev) => prev + 1);
   };
 
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <div>
       <SearchBar onSearch={handleSearch} />
-
+      <Toaster position="top-right" />
       {error && <ErrorMessage message={error} />}
 
       <ImageGallery images={images} onSelect={setSelectedImage} />
@@ -62,12 +68,13 @@ function App() {
       {images.length > 0 && !loading && page < totalPages && (
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
-
-      {selectedImage && (
-        <ImageModal img={selectedImage} onClose={() => setSelectedImage(null)} />
-      )}
+      <ImageModal
+        isOpen={selectedImage !== null}
+        onClose={closeModal}
+        imageUrl={selectedImage?.urls?.regular}
+      />
     </div>
-  );
+  )
 }
 
 export default App;

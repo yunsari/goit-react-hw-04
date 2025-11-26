@@ -1,14 +1,9 @@
 import { RotatingLines } from "react-loader-spinner";
+import styles from "./Loader.module.css";
 
 function Loader() {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        marginTop: "20px",
-      }}
-    >
+    <div className={styles.loader}>
       <RotatingLines
         visible={true}
         height="60"

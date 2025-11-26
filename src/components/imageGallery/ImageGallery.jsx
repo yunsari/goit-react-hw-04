@@ -1,5 +1,5 @@
 import styles from "./ImageGallery.module.css";
-import ImageCard from "./ImageCard";
+import ImageCard from "../imageCard/ImageCard";
 
 function ImageGallery({ images, onSelect }) {
   return (

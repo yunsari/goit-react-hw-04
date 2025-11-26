@@ -1,5 +1,7 @@
+import styles from "./ErrorMessage.module.css";
+
 function ErrorMessage({ message }) {
-  return <p style={{ color: "red" }}>{message}</p>;
+  return <p className={styles.error}>{message}</p>;
 }
 
 export default ErrorMessage;
